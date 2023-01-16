@@ -32,7 +32,8 @@ jobs:
         pkg-config zlib1g-dev libgmp3-dev libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget
     - name: Clone source code
       run: |
-        git clone --depth=1 https://github.com/zhuleichina/padavan-4.4.git /opt/rt-n56u
+        #git clone --depth=1 https://github.com/zhuleichina/padavan-4.4.git /opt/rt-n56u
+        git clone --depth=1 https://github.com/zhuleichina/rt-n56u.git /opt/rt-n56u
         cd /opt/rt-n56u/toolchain-mipsel
         sh dl_toolchain.sh
         mkdir -p /opt/images/
@@ -83,7 +84,9 @@ jobs:
         echo "CONFIG_FIRMWARE_INCLUDE_MENTOHUST=n" >> .config #mentohust
         
         ##流控QOS##
-        echo "CONFIG_FIRMWARE_INCLUDE_SQM=n" >> .config #SQM QOS#CPU超频
+        echo "CONFIG_FIRMWARE_INCLUDE_SQM=n" >> .config #SQM QOS
+        
+        #CPU超频
         echo "CONFIG_FIRMWARE_INCLUDE_OC=n" >> .config #CPU超频开关
         echo 'CONFIG_FIRMWARE_MT7621_OC="0x312"' >> .config #此处填写对应频率的十六进制：1000Mhz=0x312 1100Mhz=0x362 1120Mhz=0x372 1200Mhz=0x3B2
         
